@@ -1,0 +1,103 @@
+---
+import Story from '../../../layouts/Story.astro';
+import FigurePanel from '../../../components/FigurePanel.astro';
+import Disclosure from '../../../components/Disclosure.astro';
+import Dots from '../../../components/Dots.astro';
+import RowsFigure from '../../../components/RowsFigure.astro';
+---
+<Story
+  route="dow"
+  title="Migrating inspection records across 15 Dow sites · Vignesh Mayandia Chandran"
+  description="A Dow program-delivery case: proposing a three-site pilot, organizing records review and coordinating an inspection-system migration across 15 sites."
+  context="Dow / Program delivery"
+  h1="Migrating inspection records across 15 Dow sites"
+  standfirst="Dow needed to replace the system used for equipment inspection and maintenance records. I proposed the rollout, designed the records-review process and coordinated with site teams through a migration the team completed across 15 sites."
+  snapshot={[
+    { label: 'My role', value: 'Rollout planning, records review, progress reporting and site coordination.' },
+    { label: 'Working context', value: 'A funded engineering program involving plant teams with separate priorities and resources.' },
+  ]}
+  nav={[
+    { href: '#context', label: 'Business stakes' },
+    { href: '#rollout-decision', label: 'Rollout decision' },
+    { href: '#review-workflow', label: 'Site validation' },
+    { href: '#coordination', label: 'Decisions and reporting' },
+    { href: '#outcome', label: 'Outcome' },
+  ]}
+>
+  <section id="context" aria-labelledby="context-title">
+    <h2 class="section-title" id="context-title">Replacing a system used for inspection planning</h2>
+    <div class="prose">
+      <p>The retiring system held information used to plan equipment inspections and maintenance. Moving that information meant working with site teams to check the recorded operating conditions and close data gaps, as well as preparing it for the replacement system.</p>
+      <p>I organized the records review and coordination across sites. Each plant controlled its own resources and priorities; I had no authority over site budgets or reporting lines. The rollout depended on site support and a review process that people could fit around their operating responsibilities.</p>
+    </div>
+  </section>
+
+  <section id="rollout-decision" aria-labelledby="rollout-title">
+    <h2 class="section-title" id="rollout-title">A three-site pilot before the remaining 12 sites</h2>
+    <div class="prose">
+      <p>Leadership initially recommended five phases. I proposed two: a pilot at three sites to test the review process, followed by the remaining 12 sites together.</p>
+      <p>Each phase required another round of setup and tracking. The pilot would establish the process before the remaining sites used it. I built support with site counterparts and internal leadership, who helped present the proposal to operations leadership.</p>
+    </div>
+
+    <FigurePanel id="rollout-figure" title="From five phases to two" caption="Diagram of the initial proposal and the rollout used. Block widths do not represent time, effort or cost." textEquivalent="The initial proposal had five phases. The rollout used a three-site pilot followed by the remaining 12 sites together.">
+      <div class="plan-group plan-proposed">
+        <p class="plan-label">Initial proposal: five phases</p>
+        <ol class="phases">
+          {[1, 2, 3, 4, 5].map(phase => <li><span>Phase</span>{' '}<span>{phase}</span></li>)}
+        </ol>
+        <p class="plan-note">Each phase required separate setup and tracking. Site allocations within the five phases are not shown.</p>
+      </div>
+      <div class="plan-group plan-adopted">
+        <p class="plan-label">The rollout we used: two phases</p>
+        <div class="adopted-blocks">
+          <div class="block">
+            <h4>Pilot</h4>
+            <p class="count">3 sites</p>
+            <Dots count={3} />
+            <p class="purpose">Test the review process</p>
+          </div>
+          <div class="block">
+            <h4>Remaining sites</h4>
+            <p class="count">12 sites</p>
+            <Dots count={12} />
+            <p class="purpose">Use the process established in the pilot</p>
+          </div>
+        </div>
+      </div>
+    </FigurePanel>
+
+    <div class="prose rollout-tradeoff"><p>Fewer phases reduced repeated setup, but reviewing 12 sites together increased the coordination needed at one time. I paired the proposal with a pilot and common reporting so the team could track progress and problems across sites.</p></div>
+  </section>
+
+  <section id="review-workflow" aria-labelledby="review-workflow-title">
+    <h2 class="section-title" id="review-workflow-title">Site teams checked the records first</h2>
+    <div class="prose">
+      <p>Local equipment records were limited, and the migration had less preparation time than a new inspection program. I built a template and review guide so site teams could check the existing information first. Further research could then focus on the remaining equipment-data gaps.</p>
+      <p>When written reviews stopped progressing, we worked through the information in meetings with groups within each plant. Questions about recorded fluids, temperatures, and operating conditions gave those sessions a concrete focus.</p>
+    </div>
+    <RowsFigure id="audiences-figure" title="Two constraints that shaped the review" layout="split" items={[
+      { heading: 'Limited local records', detail: 'Put site validation first, then research unresolved equipment-data gaps.' },
+      { heading: 'Written reviews stalled', detail: 'Work through the questions in meetings with the relevant plant groups.' },
+    ]} caption="Summary of review decisions described in this account. Internal records and review templates are not reproduced." />
+  </section>
+
+  <section id="coordination" aria-labelledby="coordination-title">
+    <h2 class="section-title" id="coordination-title">Reporting to site teams and operations leadership</h2>
+    <div class="prose">
+      <p>I built trackers, presentations and dashboards covering milestones, resource needs, data quality and risks. Weekly internal and site meetings addressed problems with the work. Reviews at key stages gave operations leadership the information needed to assess progress and make decisions.</p>
+      <p>I also explained differences between the old and new systems, including changes in the records and model outputs that reviewers needed to understand.</p>
+    </div>
+    <Disclosure id="reporting-covered" summary="How I checked the effect of changes to inspection-model assumptions"><p>In later migration work, I used spreadsheet comparisons to show how proposed changes in materials or assumptions about corrosion affected model output. Reviewers could examine those implications before another platform upload. Site specialists made the technical decisions; platform administration remained with the relevant specialists.</p></Disclosure>
+  </section>
+
+  <section id="outcome" aria-labelledby="outcome-title">
+    <h2 class="section-title" id="outcome-title">A completed migration</h2>
+    <div class="prose">
+      <p>The team completed the migration across 15 sites. My contribution was the rollout proposal, records-review process, progress reporting and coordination between site teams, engineering specialists and leadership.</p>
+    </div>
+  </section>
+</Story>
+
+<style>
+  .rollout-tradeoff { margin-top: 24px; }
+</style>

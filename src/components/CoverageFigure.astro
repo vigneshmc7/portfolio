@@ -1,0 +1,16 @@
+---
+// H02: aggregate held-out coverage. Static two-segment bar (decorative), labels/values in HTML, a separate
+// disagreement sentence with its own denominator, then the caption. Retrospective evaluation, not a lending tool.
+import FigurePanel from './FigurePanel.astro';
+interface Props { id: string; title: string; total: string; coveredLabel: string; coveredValue: string; uncertainLabel: string; uncertainValue: string; coveredShare: number; disagreement: string; caption: string }
+const { id, title, total, coveredLabel, coveredValue, uncertainLabel, uncertainValue, coveredShare, disagreement, caption } = Astro.props;
+---
+<FigurePanel id={id} title={title} caption={caption}>
+  <p class="coverage-total">{total}</p>
+  <div class="coverage-bar" aria-hidden="true" style={`--covered:${coveredShare}fr; --uncertain:${100 - coveredShare}fr`}><span class="coverage-seg coverage-covered"></span><span class="coverage-seg coverage-uncertain"></span></div>
+  <dl class="coverage-legend">
+    <div class="coverage-item"><dt><span class="coverage-swatch coverage-covered" aria-hidden="true"></span>{coveredLabel}</dt><dd>{coveredValue}</dd></div>
+    <div class="coverage-item"><dt><span class="coverage-swatch coverage-uncertain" aria-hidden="true"></span>{uncertainLabel}</dt><dd>{uncertainValue}</dd></div>
+  </dl>
+  <p class="coverage-note">{disagreement}</p>
+</FigurePanel>

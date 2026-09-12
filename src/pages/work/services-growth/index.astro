@@ -1,0 +1,47 @@
+---
+import Story from '../../../layouts/Story.astro';
+import RowsFigure from '../../../components/RowsFigure.astro';
+---
+<Story
+  route="services-growth"
+  title="From staffing to project delivery · Vignesh Mayandia Chandran"
+  description="An independent growth-strategy engagement connecting a services firm's proposed move into project delivery with skill assessment, talent development, and hiring measures."
+  context="Services growth / Independent advisory engagement"
+  h1="From staffing to project delivery"
+  standfirst="A services firm wanted to expand from staffing into project delivery. I developed a growth strategy covering the recruiting, skill assessment, training and client development needed to support that move."
+  snapshot={[
+    { label: 'Engagement', value: 'Independent, pro bono work over a semester; client kept private.' },
+    { label: 'My role', value: 'Growth strategy, recruiting recommendations and proposed measures.' },
+  ]}
+  nav={[
+    { href: '#growth-problem', label: 'Preparing for project work' },
+    { href: '#operating-connections', label: 'Recruiting measures' },
+    { href: '#advisory-outcome', label: 'The recommendations' },
+  ]}
+>
+  <section id="growth-problem" aria-labelledby="growth-problem-title">
+    <h2 class="section-title" id="growth-problem-title">Recruiting and training for project work</h2>
+    <div class="prose">
+      <p>Taking on project work would give the firm responsibility for delivery as well as filling individual roles. It needed a way to identify the skills clients required and prepare people for that work.</p>
+      <p>I recommended mapping recurring client needs to guide candidate screening and upskilling. The plan also called for clearer descriptions of the firm’s project services and targeted business development to find clients for them.</p>
+    </div>
+  </section>
+
+  <section id="operating-connections" aria-labelledby="operating-connections-title">
+    <h2 class="section-title" id="operating-connections-title">Measuring hiring speed and candidate suitability</h2>
+    <div class="prose">
+      <p>I proposed standardized skill screening and a referral program to support recruiting. To assess these changes, the firm would need to track whether it was finding suitable candidates, how long hiring took and how often referrals led to placements.</p>
+    </div>
+    <RowsFigure id="connections-figure" title="Proposed measures and the questions they answer" layout="split" items={[
+      { heading: 'Time-to-hire and candidate quality', detail: 'How quickly can the firm find suitable people? Assess hiring speed alongside fit for the work.' },
+      { heading: 'Referral-to-placement conversion', detail: 'How many referrals become placements? Follow candidates through the process to assess the referral program.' },
+    ]} caption="Proposed measures from the advisory plan." />
+  </section>
+
+  <section id="advisory-outcome" aria-labelledby="advisory-outcome-title">
+    <h2 class="section-title" id="advisory-outcome-title">An advisory plan for the client</h2>
+    <div class="prose">
+      <p>I delivered the growth strategy and proposed measures at the end of the semester. The client retained responsibility for implementation and evaluating the results.</p>
+    </div>
+  </section>
+</Story>

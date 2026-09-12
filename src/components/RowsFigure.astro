@@ -1,0 +1,13 @@
+---
+// Rows of heading + detail with decorative dividers. layout 'split' puts the heading left and detail right
+// at >=720px; 'stacked' keeps heading above detail. Equal weight, no numbering.
+import FigurePanel from './FigurePanel.astro';
+interface Item { heading: string; detail: string }
+interface Props { id: string; title: string; items: Item[]; caption: string; layout?: 'split' | 'stacked' }
+const { id, title, items, caption, layout = 'split' } = Astro.props;
+---
+<FigurePanel id={id} title={title} caption={caption}>
+  <ul class:list={['rows', `rows-${layout}`]}>
+    {items.map((it) => <li><p class="rows-heading">{it.heading}</p><p class="rows-detail">{it.detail}</p></li>)}
+  </ul>
+</FigurePanel>

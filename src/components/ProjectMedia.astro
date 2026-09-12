@@ -1,0 +1,14 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { src: ImageMetadata; alt: string; caption: string; label: string; id: string }
+const { src, alt, caption, label, id } = Astro.props;
+const full = await getImage({ src, width: src.width, format: 'webp', quality: 95 });
+const widths = [...new Set([480, 800, 1200, src.width].filter(width => width <= src.width))];
+---
+<figure class="project-media" id={id}>
+  <a class="media-image-link" href={full.src} aria-label={`View full-size ${label}`} aria-describedby={`${id}-caption`}>
+    <Image src={src} alt={alt} width={Math.min(1200, src.width)} widths={widths} sizes="(min-width: 1024px) 800px, calc(100vw - 48px)" format="webp" quality={90} loading="lazy" />
+  </a>
+  <figcaption id={`${id}-caption`}><p>{caption}</p><a href={full.src} class="media-enlarge">View full-size {label} <span aria-hidden="true">↗</span></a></figcaption>
+</figure>

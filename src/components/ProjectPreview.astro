@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import ProjectArt from './ProjectArt.astro';
+import type { Project } from '../data/projects';
+interface Props { project: Project }
+const { project } = Astro.props;
+---
+<template id={`preview-${project.slug}`}>
+  <div class="preview-inner">
+    <div class="preview-label">
+      <p class="eyebrow">{project.context}</p>
+      <span>{project.status}</span>
+    </div>
+    <h2 id={`preview-title-${project.slug}`}>{project.title}</h2>
+    <ProjectArt project={project} />
+    <dl class="preview-fields">
+      <div><dt>My contribution</dt><dd>{project.contribution}</dd></div>
+      <div><dt>Result</dt><dd>{project.result}</dd></div>
+    </dl>
+    {project.limitation && <p class="preview-limitation">{project.limitation}</p>}
+    <a class="primary-link preview-story" href={project.href}>
+      {project.linkText}<Icon name="arrow" />
+    </a>
+  </div>
+</template>

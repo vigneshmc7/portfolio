@@ -1,0 +1,52 @@
+---
+import Story from '../../../layouts/Story.astro';
+import ProjectMedia from '../../../components/ProjectMedia.astro';
+import Disclosure from '../../../components/Disclosure.astro';
+import forecast from '../../../assets/projects/weather-forecast.webp';
+import servicePlan from '../../../assets/projects/weather-service-plan.webp';
+---
+<Story
+  route="weather-ready"
+  title="Planning dinner service with weather forecasts · Vignesh Mayandia Chandran"
+  description="A graduate practicum prototype connecting weather forecasts to guest estimates, restaurant service plans, and feedback, with original interface examples."
+  context="Weather-Ready / Graduate analytics practicum"
+  h1="Planning dinner service with weather forecasts"
+  standfirst="A restaurant manager needs to decide how many guests to prepare for before dinner begins. I built an AI prototype connecting weather and local context with guest estimates, explanations and feedback after service."
+  snapshot={[
+    { label: 'Setting', value: 'MS in Business Analytics practicum, informed by restaurant discovery interviews.' },
+    { label: 'My contribution', value: 'Connecting forecasting, explanations, and stored feedback in a working prototype.' },
+    { label: 'Intended use', value: 'Help managers interpret demand estimates alongside what they know about an upcoming service.' },
+    { label: 'Project stage', value: 'Prototype; restaurant pilot outcomes remain unmeasured.' },
+  ]}
+  nav={[
+    { href: '#the-decision', label: 'The demand forecast' },
+    { href: '#product-loop', label: 'Restaurant plans and feedback' },
+    { href: '#prototype-outcome', label: 'Prototype evaluation' },
+  ]}
+>
+  <section id="the-decision" aria-labelledby="the-decision-title">
+    <h2 class="section-title" id="the-decision-title">An estimate of dinner guests, with a planning range</h2>
+    <div class="prose">
+      <p>A weather forecast alone does not tell a restaurant how many people it will serve. Weather-Ready estimates dinner guests using weather and local signals, then explains what affects that estimate.</p>
+      <p>In the screen below, Wednesday is marked as slower than usual, with heavy rain, an estimate of 136 guests, and a planning range of 112–155. The screen also asks the manager to confirm the service setup. These are values in the interface example, rather than observed restaurant results.</p>
+    </div>
+    <ProjectMedia id="forecast-screen" src={forecast} label="forecast screen" alt="Prototype forecast: Wednesday shows heavy rain, 136 estimated guests, a range of 112–155, and a prompt to confirm service. Other dates remain visible for context." caption="Forecast screen from the Weather-Ready prototype. Guest counts and ranges are values shown in this interface example." />
+  </section>
+
+  <section id="product-loop" aria-labelledby="product-loop-title">
+    <h2 class="section-title" id="product-loop-title">Accounting for patio closures and private events</h2>
+    <div class="prose">
+      <p>A closed patio, an early closing, or a private event changes what a normal evening means. The service-plan form lets a manager record those known changes, instead of treating every change in guest numbers as a weather effect.</p>
+      <p>After service, managers can record what actually happened. I connected forecasts, explanations and stored feedback so planning and later review used the same workflow. Feedback updates the prototype’s stored state for later runs; whether that improves forecast quality still needs testing.</p>
+    </div>
+    <ProjectMedia id="service-plan-screen" src={servicePlan} label="service-plan screen" alt="Plans and Actuals screen with the service-state dropdown open: normal service, partial or early close, patio closed or constrained, private event or buyout, holiday-modified service, and closed service." caption="The prototype's service-plan form records operating changes such as a closed patio, early closing, or a private event." />
+    <Disclosure id="architecture" summary="How the prototype connects these steps"><p>A FastAPI backend supports a React and TypeScript interface, with DuckDB storing the data and Azure OpenAI-backed agents supporting the workflow. Forecasting logic combines demand signals and explanations; feedback updates stored state for subsequent runs.</p></Disclosure>
+  </section>
+
+  <section id="prototype-outcome" aria-labelledby="prototype-outcome-title">
+    <h2 class="section-title" id="prototype-outcome-title">What a restaurant pilot would need to test</h2>
+    <div class="prose">
+      <p>The practicum produced a working prototype. A restaurant pilot would need to compare its forecasts with a baseline, measure errors under different service conditions and test whether the explanations help managers plan service.</p>
+    </div>
+  </section>
+</Story>

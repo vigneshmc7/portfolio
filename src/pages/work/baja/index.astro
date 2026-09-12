@@ -1,0 +1,48 @@
+---
+import Story from '../../../layouts/Story.astro';
+import ProjectMedia from '../../../components/ProjectMedia.astro';
+import vehicle from '../../../assets/projects/baja-workshop.webp';
+---
+<Story
+  route="baja"
+  title="Building our first off-road vehicle · Vignesh Mayandia Chandran"
+  description="Captaining a 25-member student team through its first BAJA off-road vehicle build, coordinating five groups, weekly meetings, and fundraising."
+  context="BAJA / Student off-road vehicle project"
+  h1="Building our first off-road vehicle"
+  standfirst="During my mechanical engineering degree, I captained a 25-member team entering BAJA, a student off-road vehicle competition, for the first time. We had to organize the people and funding as well as design and build the vehicle."
+  snapshot={[
+    { label: 'Setting', value: 'Undergraduate mechanical engineering project, 2017–2018.' },
+    { label: 'Team', value: '25 members in five groups responsible for different parts of the vehicle.' },
+    { label: 'My responsibility', value: 'Team leadership, weekly planning and fundraising coordination.' },
+    { label: 'Deliverable', value: 'An off-road vehicle built by the team and entered in competition.' },
+  ]}
+  nav={[
+    { href: '#build-the-team', label: 'Organize the team' },
+    { href: '#coordinate-the-work', label: 'Coordinate the build' },
+    { href: '#brake-test', label: 'Competition outcome' },
+  ]}
+>
+  <section id="build-the-team" aria-labelledby="build-the-team-title">
+    <h2 class="section-title" id="build-the-team-title">Five groups working toward one vehicle</h2>
+    <div class="prose">
+      <p>I organized the team into five groups responsible for different parts of the vehicle. Team members did the detailed engineering work, while I coordinated progress across the groups.</p>
+      <p>We met each Monday to review progress across the five groups.</p>
+    </div>
+    <ProjectMedia id="workshop-photo" src={vehicle} label="workshop photo" alt="The team's yellow-framed off-road vehicle in a workshop, with its seat, steering wheel, suspension, and wheels visible." caption="The team's off-road vehicle in the workshop during the build." />
+  </section>
+
+  <section id="coordinate-the-work" aria-labelledby="coordinate-the-work-title">
+    <h2 class="section-title" id="coordinate-the-work-title">Fundraising alongside design and fabrication</h2>
+    <div class="prose">
+      <p>Fundraising progressed alongside the engineering work. My responsibility was to keep those activities coordinated through the design round, fabrication, and preparation for competition.</p>
+      <p>The team passed the design round and built the vehicle shown in the workshop photograph.</p>
+    </div>
+  </section>
+
+  <section id="brake-test" aria-labelledby="brake-test-title">
+    <h2 class="section-title" id="brake-test-title">The brake test ended our competition entry</h2>
+    <div class="prose">
+      <p>The vehicle failed the brake test, and the team was disqualified. We had completed the build and brought it to competition, but it did not meet that test requirement.</p>
+    </div>
+  </section>
+</Story>

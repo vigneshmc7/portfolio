@@ -1,0 +1,28 @@
+# Publish only the application, used assets, configuration and supporting notices.
+/*
+!/.gitignore
+!/.nvmrc
+!/.env.example
+!/README.md
+!/astro.config.mjs
+!/package.json
+!/package-lock.json
+!/wrangler.jsonc
+!/src/
+!/public/
+!/licenses/
+
+# Keep local files out even when they appear inside an allowed directory.
+**/.DS_Store
+**/Thumbs.db
+**/.env
+**/.env.*
+!/.env.example
+**/node_modules/
+**/.cache/
+**/.astro/
+**/.wrangler/
+**/*.log
+**/*.tmp
+**/*.bak
+**/*~

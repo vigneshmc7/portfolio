@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import vehicle from '../assets/projects/baja-workshop.webp';
+import forecast from '../assets/projects/weather-forecast.webp';
+import Mini from './Mini.astro';
+import Dots from './Dots.astro';
+import type { Project } from '../data/projects';
+interface Props { project: Project }
+const { project } = Astro.props;
+const original = project.slug === 'baja' ? vehicle : project.slug === 'weather-ready' ? forecast : null;
+---
+<div class:list={['project-art', `project-art-${project.slug}`, original && 'project-art-original']}>
+  {original ? <figure>
+    <Image src={original} alt={project.slug === 'baja' ? "The team's yellow-framed off-road vehicle in the workshop." : 'Weather-Ready forecast screen, showing guest estimates, planning ranges, and a service-confirmation prompt.'} width={800} widths={[480, 800, 1200]} sizes="(min-width: 720px) 45vw, calc(100vw - 96px)" format="webp" quality={88} loading="lazy" />
+    <figcaption>{project.slug === 'baja' ? "The team's vehicle during the build" : 'Prototype forecast · figures are interface examples'}</figcaption>
+  </figure> : project.mini === 'dow' ? <figure class="dow-poster-figure">
+    <div class="dow-poster-counts"><div><span class="poster-label">Pilot</span><strong>3</strong><span class="poster-unit">sites</span><Dots count={3} /></div><span class="poster-connector" aria-hidden="true"></span><div><span class="poster-label">Remaining sites</span><strong>12</strong><span class="poster-unit">sites</span><Dots count={12} /></div></div>
+    <figcaption>Diagram of the rollout used across 15 sites</figcaption>
+  </figure> : <Mini kind={project.mini} context={project.context} />}
+</div>

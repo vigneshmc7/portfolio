@@ -1,0 +1,207 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { chapters } from '../data/chapters';
+import { projects } from '../data/projects';
+import portrait from '../assets/vignesh.jpg';
+const selectedWork = ['energy', 'dow', 'weather-ready'].map(slug => projects.find(project => project.slug === slug)!);
+const capabilityNodes = [
+  { label: 'Business strategy', details: ['Market entry', 'Growth strategy'], href: '/work/?focus=strategy' },
+  { label: 'Industrial operations', details: ['Workflow automation', 'Program delivery'], href: '/work/dow/' },
+  { label: 'Applied AI', details: ['Product discovery', 'AI prototyping'], href: '/work/weather-ready/' },
+];
+---
+<Base route="home" title="Vignesh Mayandia Chandran · Business strategy, operations & applied AI" description="Vignesh Mayandia Chandran: MBA and MS in Business Analytics, with more than five years at Dow. Explore work in market-entry and growth strategy, inspection systems and AI planning for restaurants.">
+  <section class="portrait-hero" aria-labelledby="hero-title">
+    <div class="hero-composition container">
+      <div class="hero-copy">
+        <h1 id="hero-title">Hi, I'm <span>Vignesh.</span></h1>
+        <p class="hero-credentials">MBA · MS in Business Analytics</p>
+        <div class="hero-lede">
+          <p>I trained as a mechanical engineer and spent more than five years at Dow, progressing from technical analysis to leading large-scale, data-intensive programs in industrial operations. I led a system migration across 15 sites, aligning engineering, plant teams and leadership around clear priorities and carrying the program through to completion.</p>
+          <p>I recently completed an MBA and an MS in Business Analytics at George Washington University. I brought my experience of leading implementation into the classroom, where my focus expanded to the business decisions behind it: which opportunities to pursue, what the analysis supports and where technology can help. My work in business strategy and applied AI builds on that combination of analytical judgment and practical experience.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="primary-link" href="/work/">View all {projects.length} projects <Icon name="arrow" /></a>
+          <a class="hero-story-link" href="#career">My background</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg class="network-lines" viewBox="0 0 520 272" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M170 160 86 224 M350 160 434 224" />
+        </svg>
+        <div class="hero-photo">
+          <Image src={portrait} alt="Vignesh Mayandia Chandran" width={480} widths={[160, 240, 360, 480]} sizes="(min-width: 1100px) 198px, (min-width: 720px) 170px, 84px" format="webp" quality={84} loading="eager" fetchpriority="high" />
+        </div>
+        <nav class="hero-keywords" aria-label="Explore work by capability">
+          <ul class="capability-nodes">{capabilityNodes.map(node => <li><a href={node.href}><span class="keyword-label">{node.label}</span>{' '}<span class="keyword-detail">{node.details.map(detail => <span>{detail}{' '}</span>)}</span></a></li>)}</ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="container selected-section" id="about" aria-labelledby="about-title">
+    <header class="selected-heading" data-reveal>
+      <div><p class="eyebrow">{selectedWork.length} of {projects.length} projects</p><h2 id="about-title">Selected work</h2></div>
+      <a class="all-work-link" href="/work/">View all {projects.length} projects <Icon name="arrow" size={18} /></a>
+    </header>
+    <ul class="selected-work" aria-label="Selected business, industrial operations and applied AI work" data-reveal>
+      {selectedWork.map(project => <li>
+        <div class="selected-topline"><p class="eyebrow">{project.context}</p></div>
+        <h3><a href={project.href}>{project.title} <Icon name="arrow" size={20} /></a></h3>
+        <p class="selected-summary">{project.summary}</p>
+        <div class="selected-footnote"><p class="selected-capability">{project.capability}</p><p class="selected-stage">{project.status}</p></div>
+      </li>)}
+    </ul>
+  </section>
+
+  <section class="journey-section" id="career" aria-labelledby="career-title">
+    <div class="container">
+      <header class="section-heading" data-reveal><div><p class="eyebrow">My background</p><h2 id="career-title">Experience and education</h2></div></header>
+      <div class="experience-list">
+        {chapters.map(chapter => <section id={`chapter-${chapter.id}`} class="experience-entry" aria-labelledby={`heading-${chapter.id}`}>
+          <p class="experience-date">{chapter.date}</p>
+          <div><p class="eyebrow">{chapter.label}</p><h3 id={`heading-${chapter.id}`}>{chapter.title}</h3><div class="prose">{chapter.paragraphs.map(p => <p>{p}</p>)}</div><div class="chapter-links">{chapter.links.map(link => <a class="chapter-link" href={link.href}>{link.label} <Icon name="arrow" size={18} /></a>)}</div></div>
+        </section>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="container personal-section" id="interests" aria-labelledby="interests-title">
+    <div class="personal-copy"><h2 id="interests-title">Have you played Mini Sudoku on LinkedIn?</h2><p>I’m on a 370-day streak.</p><a class="puzzle-link" href="https://www.linkedin.com/games/mini-sudoku">Try today’s puzzle</a></div>
+  </section>
+
+  <section class="contact-stage" id="contact" aria-labelledby="contact-title">
+    <div class="container contact-composition">
+      <div><h2 id="contact-title">Contact</h2><p>I’m interested in roles in consulting, business transformation and applied AI.</p></div>
+      <ul class="contact-channels" aria-label="Contact and profiles">
+        <li><a href="mailto:vigneshmc7p@gmail.com"><Icon name="gmail" size={24} /><span>vigneshmc7p@gmail.com</span></a></li>
+        <li><a href="https://www.linkedin.com/in/vignesh-mc/"><Icon name="linkedin" size={24} /><span>LinkedIn</span></a></li>
+        <li><a href="https://github.com/vigneshmc7"><Icon name="github" size={24} /><span>GitHub</span></a></li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .portrait-hero { min-height: 0; overflow: visible; }
+  .hero-composition { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; gap: 52px; min-height: 0; padding-block: 48px; }
+  .hero-copy { max-width: none; }
+  .hero-copy h1 { font-size: 2.25rem; line-height: 1.15; margin: 0; letter-spacing: -.025em; }
+  .hero-copy h1 span { display: inline; margin: 0; }
+  .hero-credentials { margin-top: 10px; color: var(--stage-muted); font-size: .8rem; }
+  .hero-lede { max-width: 54ch; margin-top: 28px; font-size: 1.05rem; line-height: 1.8; }
+  .hero-lede p + p { margin-top: 18px; }
+  .hero-visual { --portrait-size: 212px; --photo-gap: 24px; --branch-drop: 76px; position: relative; isolation: isolate; min-width: 0; width: 100%; max-width: 520px; justify-self: center; display: flex; flex-direction: column; align-items: center; }
+  .network-lines { position: absolute; top: 0; left: 0; width: 100%; height: calc(var(--portrait-size) + 60px); overflow: visible; pointer-events: none; }
+  .network-lines path { fill: none; stroke: #536f61; stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .hero-photo { position: relative; inset: auto; flex: none; width: var(--portrait-size); height: var(--portrait-size); padding: 6px; border: 1px solid #91a580; border-radius: 50%; background: var(--stage); overflow: hidden; z-index: 1; }
+  .hero-photo img { border-radius: 50%; object-position: 50% 32%; }
+  .hero-photo::after { display: none; }
+  .hero-keywords { position: relative; width: 100%; margin-top: var(--photo-gap); z-index: 2; }
+  .capability-nodes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); align-items: start; list-style: none; }
+  .capability-nodes li { position: relative; display: flex; min-width: 0; }
+  .capability-nodes li:nth-child(1) { grid-area: 1 / 1 / 2 / 3; }
+  .capability-nodes li:nth-child(2) { grid-area: 1 / 5 / 2 / 7; }
+  .capability-nodes li:nth-child(3) { grid-area: 1 / 3 / 2 / 5; margin-top: var(--branch-drop); }
+  .capability-nodes li:nth-child(3)::before { content: ''; position: absolute; left: 50%; top: calc(-1 * (var(--branch-drop) + var(--photo-gap))); width: 1px; height: calc(var(--branch-drop) + var(--photo-gap) - 8px); background: #536f61; pointer-events: none; }
+  .hero-keywords a { display: flex; flex: 1; flex-direction: column; align-items: center; min-width: 0; margin-inline: 4px; padding: 4px 0; border: 0; background: var(--stage); text-align: center; text-decoration: none; }
+  .keyword-label { color: var(--stage-accent); font: 400 1.15rem/1.25 var(--font-story); text-wrap: balance; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .keyword-detail { margin-top: 8px; color: var(--stage-muted); font: 400 .78rem/1.55 var(--font-ui); text-wrap: balance; }
+  .keyword-detail > span { display: block; }
+  .hero-keywords a:hover .keyword-label { color: var(--stage-ink); text-decoration-thickness: 2px; }
+  .hero-keywords a:focus-visible, .hero-story-link:focus-visible { outline-color: var(--stage-accent); }
+  .selected-section { padding-block: 76px; }
+  .selected-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+  .selected-heading h2 { margin-top: 12px; font-size: clamp(2.25rem, 3.6vw, 3.4rem); line-height: 1.1; letter-spacing: -.025em; }
+  .all-work-link { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; font-size: .86rem; text-underline-offset: 5px; }
+  .selected-work { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 36px; list-style: none; }
+  .selected-work li { display: flex; flex-direction: column; padding-top: 22px; border-top: 1px solid var(--line); }
+  .selected-topline { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .selected-topline .eyebrow { font-size: .66rem; }
+  .selected-work h3 { font: 400 clamp(1.55rem, 2vw, 1.95rem)/1.22 var(--font-story); letter-spacing: -.02em; margin-top: 18px; }
+  .selected-work h3 a { text-decoration: none; color: var(--ink); }
+  .selected-work h3 a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 5px; }
+  .selected-work h3 :global(svg) { display: inline-block; vertical-align: middle; margin-left: 6px; color: var(--accent); }
+  .selected-summary { margin-top: 16px; font-size: .9rem; line-height: 1.75; color: var(--ink); }
+  .selected-footnote { margin-top: auto; padding-top: 24px; }
+  .selected-capability { font-size: .75rem; line-height: 1.6; color: var(--accent); }
+  .selected-stage { margin-top: 6px; font-size: .75rem; line-height: 1.6; color: var(--muted); }
+  .journey-section { padding-block: 64px; }
+  .section-heading h2 { font-size: clamp(2.2rem, 3.2vw, 3rem); margin-top: 12px; }
+  .experience-list { margin-top: 32px; }
+  .experience-entry { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 44px; padding-block: 28px; border-top: 1px solid var(--line); }
+  .experience-date { color: var(--muted); font-size: .78rem; padding-top: 2px; }
+  .experience-entry .eyebrow { font-size: .68rem; }
+  .experience-entry h3 { font: 400 1.6rem/1.25 var(--font-story); letter-spacing: -.015em; margin-block: 12px 14px; }
+  .experience-entry .prose { max-width: 76ch; font-size: .9rem; line-height: 1.75; }
+  .chapter-links { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 8px; }
+  .chapter-links .chapter-link { margin-top: 0; gap: 12px; }
+  .personal-section { display: block; padding-block: 48px; }
+  .personal-copy h2 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); line-height: 1.3; margin: 0; text-wrap: pretty; }
+  .personal-copy > p { margin-top: 12px; }
+  .puzzle-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: .9rem; text-underline-offset: 4px; }
+  @media (min-width: 720px) and (max-width: 1099px) {
+    .hero-composition { gap: 28px; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+    .hero-visual { --portrait-size: 184px; --branch-drop: 112px; }
+    .capability-nodes li:nth-child(1) { grid-column: 1 / 4; }
+    .capability-nodes li:nth-child(2) { grid-column: 4 / 7; }
+    .capability-nodes li:nth-child(3) { grid-column: 2 / 6; }
+    .keyword-label { font-size: 1.1rem; }
+    .selected-work { gap: 24px; }
+  }
+  @media (max-width: 719.98px) {
+    .portrait-hero { display: block; margin-inline: 12px; }
+    .hero-composition { display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 0 16px; padding-block: 28px; }
+    .hero-copy, .hero-visual { display: contents; }
+    .hero-copy h1 { grid-area: 1 / 1; font-size: 1.75rem; align-self: end; }
+    .hero-credentials { grid-area: 2 / 1; font-size: .75rem; line-height: 1.5; margin-top: 8px; }
+    .hero-photo { --portrait-size: 96px; grid-area: 1 / 2 / 3 / 3; align-self: center; }
+    .network-lines, .capability-nodes li:nth-child(3)::before { display: none; }
+    .hero-lede { grid-area: 3 / 1 / 4 / 3; font-size: .95rem; line-height: 1.7; margin-top: 24px; }
+    .hero-actions { grid-area: 4 / 1 / 5 / 3; margin-top: 22px; gap: 8px 18px; }
+    .hero-keywords { grid-area: 5 / 1 / 6 / 3; margin-top: 24px; padding-top: 20px; border-top: 1px solid #536f61; }
+    .capability-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .capability-nodes li:nth-child(n) { grid-area: auto; margin: 0; }
+    .hero-keywords a { align-items: start; margin: 0; text-align: left; }
+    .keyword-label { font-size: 1rem; min-height: 2.5em; text-wrap: initial; }
+    .keyword-detail { font-size: .75rem; margin-top: 6px; text-wrap: initial; }
+    .selected-section { padding-block: 48px; }
+    .selected-heading { display: block; }
+    .all-work-link { margin-top: 14px; }
+    .selected-work { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 24px; }
+    .selected-footnote { padding-top: 16px; }
+    .experience-entry { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 24px; }
+    .journey-section { padding-block: 44px; }
+    .personal-section { padding-block: 36px; }
+    .selected-work h3 { font-size: 1.65rem; }
+  }
+  @media (max-width: 369px) {
+    .hero-composition { grid-template-columns: minmax(0, 1fr) 84px; gap: 0 12px; }
+    .hero-photo { --portrait-size: 84px; padding: 5px; }
+    .capability-nodes { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .hero-keywords a { flex-direction: row; align-items: baseline; gap: 14px; }
+    .keyword-label { flex: 0 0 42%; min-height: 0; }
+    .keyword-detail { margin: 0; }
+  }
+  @media print {
+    .hero-composition { display: block; padding-block: 0 24px; }
+    .hero-copy { max-width: none; }
+    .hero-copy h1 { font-size: 22pt; }
+    .hero-credentials, .hero-copy h1 span { color: #111; }
+    .hero-visual { height: auto; display: block; margin-top: 20px; }
+    .hero-photo, .network-lines, .capability-nodes li::before { display: none; }
+    .hero-keywords { position: static; margin-top: 0; }
+    .hero-keywords ul { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    .capability-nodes li:nth-child(3) { margin-top: 0; }
+    .hero-keywords a { align-items: start; padding: 0; margin: 0; min-height: 0; border: 0; background: none; text-align: left; }
+    .keyword-label { color: #111; font-size: 10pt; }
+    .keyword-detail { color: #111; font-size: 9pt; margin-top: 4px; }
+    .selected-section, .journey-section { padding-block: 24px; }
+    .selected-summary, .selected-capability, .selected-stage, .experience-date { color: #111; }
+    .selected-work { display: block; margin-top: 24px; }
+    .selected-work li, .experience-entry { break-inside: avoid; margin-top: 18px; }
+    .personal-section { display: block; padding-block: 25px; }
+  }
+</style>

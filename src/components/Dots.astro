@@ -1,0 +1,6 @@
+---
+// Decorative site-count dots (8px, 6px gap, max 4 columns). Counts are carried by adjacent text.
+interface Props { count: number }
+const { count } = Astro.props;
+---
+<div class:list={['dots', { 'dots-3': count === 3 }]} aria-hidden="true">{Array.from({ length: count }).map(() => <span></span>)}</div>

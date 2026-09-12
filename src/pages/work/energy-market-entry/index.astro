@@ -1,0 +1,60 @@
+---
+import Story from '../../../layouts/Story.astro';
+import FigurePanel from '../../../components/FigurePanel.astro';
+---
+<Story
+  route="energy-market-entry"
+  title="Choosing an energy market-entry route · Vignesh Mayandia Chandran"
+  description="An MBA strategy engagement connecting energy market-entry options with infrastructure constraints, investment timing and financial scenarios."
+  context="Energy market entry / MBA team engagement"
+  h1="Choosing an energy market-entry route"
+  standfirst="An energy business needed to compare building new import infrastructure with using existing infrastructure. In an MBA team engagement, I tested how pricing, capacity use and investment timing affected the case for entry."
+  snapshot={[
+    { label: 'Business question', value: 'Build new import infrastructure or use existing capacity?' },
+    { label: 'My contribution', value: 'Scenario and sensitivity analysis to support the team’s recommendation.' },
+  ]}
+  nav={[
+    { href: '#decision-frame', label: 'The entry decision' },
+    { href: '#uncertainty', label: 'Testing the business case' },
+    { href: '#recommendation', label: 'Recommendation' },
+  ]}
+>
+  <section id="decision-frame" aria-labelledby="decision-frame-title">
+    <h2 class="section-title" id="decision-frame-title">The infrastructure choice shaped the investment</h2>
+    <div class="prose">
+      <p>The two options required different levels of investment and offered different operating capacity. Assessing demand was one part of the entry decision; the business also needed a viable way to serve customers.</p>
+      <p>I focused on how much capacity the business could use, the remaining life of the infrastructure and when investment would be required.</p>
+    </div>
+  </section>
+
+  <section id="uncertainty" aria-labelledby="uncertainty-title">
+    <h2 class="section-title" id="uncertainty-title">Earlier entry depended on capacity and useful life</h2>
+    <div class="prose">
+      <p>Existing infrastructure offered a potentially faster path to customers, but available capacity, useful life and switching costs still mattered. Building a new route introduced its own investment and setup requirements. The comparison therefore needed to account for what each option would require over time.</p>
+      <p>I used scenario and sensitivity analysis to test pricing, capacity use and investment timing. The analysis identified which operating and financial assumptions would need to hold for the team’s recommendation to remain supported.</p>
+    </div>
+    <FigurePanel id="method-figure" title="What each infrastructure option required" caption="Anonymized comparison from the engagement. Client figures and market rankings are omitted.">
+      <dl class="entry-comparison">
+        <div><dt>Build new infrastructure</dt><dd><span>Requirement</span>Investment and setup to establish an import route.</dd><dd><span>What I examined</span>How pricing, capacity use and investment timing affected the case.</dd></div>
+        <div><dt>Use existing infrastructure</dt><dd><span>Requirement</span>Access to capacity to serve customers.</dd><dd><span>What I examined</span>Whether available capacity, useful life and switching costs supported entry.</dd></div>
+      </dl>
+    </FigurePanel>
+  </section>
+
+  <section id="recommendation" aria-labelledby="recommendation-title">
+    <h2 class="section-title" id="recommendation-title">The recommendation and its conditions</h2>
+    <div class="prose">
+      <p>The team delivered a market-entry recommendation. I contributed the scenario analysis and explained the operating and financial assumptions supporting it.</p>
+      <p>The engagement concluded at the advisory stage. Investment decisions and implementation remained with the client.</p>
+    </div>
+  </section>
+</Story>
+
+<style>
+  .entry-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .entry-comparison > div { border-top: 2px solid var(--accent); padding-top: 20px; }
+  .entry-comparison dt { font: 600 1.1rem/1.4 var(--font-ui); }
+  .entry-comparison dd { margin-top: 22px; font-size: .96rem; line-height: 1.65; }
+  .entry-comparison dd span { display: block; margin-bottom: 5px; color: var(--muted); font-size: .75rem; }
+  @media (max-width: 719.98px) { .entry-comparison { grid-template-columns: minmax(0, 1fr); } }
+</style>

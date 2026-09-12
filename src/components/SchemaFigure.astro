@@ -1,0 +1,13 @@
+---
+// Conceptual star-schema figure: one center block and four related labels. Cross layout at >=720px,
+// labeled list below. DOM order: center first, then the related list. No physical schema detail.
+import FigurePanel from './FigurePanel.astro';
+interface Props { id: string; title: string; caption: string; center: string; centerDetail: string; related: string[] }
+const { id, title, caption, center, centerDetail, related } = Astro.props;
+---
+<FigurePanel id={id} title={title} caption={caption}>
+  <div class="schema">
+    <div class="schema-center"><p class="schema-heading">{center}</p><p class="schema-detail">{centerDetail}</p></div>
+    <ul class="schema-related">{related.map((r) => <li>{r}</li>)}</ul>
+  </div>
+</FigurePanel>

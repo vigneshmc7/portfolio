@@ -1,0 +1,12 @@
+---
+// Figure on a paper surface with an H3 title, body slot, caption slot, and optional text equivalent.
+interface Props { id: string; title: string; caption?: string; textEquivalent?: string }
+const { id, title, caption, textEquivalent } = Astro.props;
+const titleId = `${id}-title`;
+---
+<figure class="figure-panel" id={id} aria-labelledby={titleId}>
+  <h3 class="figure-title" id={titleId}>{title}</h3>
+  <slot />
+  {caption && <figcaption>{caption}</figcaption>}
+  {textEquivalent && <p class="visually-hidden">{textEquivalent}</p>}
+</figure>

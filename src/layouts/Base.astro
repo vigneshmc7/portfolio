@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import '../styles/creative.css';
+import ThemeControl from '../components/ThemeControl.astro';
+import { isStoryRoute, type Route } from '../data/routes';
+import { profilePage, articlePage, person } from '../data/profile';
+interface Props { title: string; description: string; route: Route }
+const { title, description, route } = Astro.props;
+const story = isStoryRoute(route);
+// Public origin: present only when SITE_URL was configured at build time (astro.config.mjs). Without it the
+// page carries no canonical URL, og:url, or absolute share-image URL rather than a localhost or invented one.
+const origin = Astro.site ? Astro.site.href.replace(/\/$/, '') : null;
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+const canonical = origin ? origin + pathname : null;
+const shareImage = origin ? origin + '/share-card.png' : null;
+const shareImageAlt = 'Vignesh Mayandia Chandran. Business strategy, industrial operations, digital transformation and applied AI. Dow, MBA, MSBA.';
+// Structured data mirrors the visible profile and case studies; escape "<" before embedding JSON.
+const pageSchema = route === 'home' ? profilePage(canonical) : story ? articlePage(canonical, title, description) : null;
+const jsonLd = pageSchema ? JSON.stringify(pageSchema).replace(/</g, '\\u003c') : null;
+// Primary navigation state: About is the current page on the home route; Work is the current page on
+// the index and the current section on every story route.
+const aboutCurrent = route === 'home' ? 'page' : undefined;
+const workCurrent = route === 'work' ? 'page' : story ? 'true' : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={person.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={story ? 'article' : 'website'} />
+    <meta property="og:site_name" content="Vignesh Mayandia Chandran" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <meta property="og:url" content={canonical} />}
+    {shareImage && <meta property="og:image" content={shareImage} />}
+    {shareImage && <meta property="og:image:width" content="1200" />}
+    {shareImage && <meta property="og:image:height" content="630" />}
+    {shareImage && <meta property="og:image:alt" content={shareImageAlt} />}
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F2EC" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111C1B" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/newsreader-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/public-sans-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      (function () {
+        try {
+          var v = localStorage.getItem('portfolio-appearance');
+          if (v === 'light' || v === 'dark') document.documentElement.setAttribute('data-theme', v);
+        } catch (e) {}
+        document.documentElement.classList.add('js');
+      })();
+    </script>
+  </head>
+  <body data-route={route}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="top">
+      <div class="container header-row">
+        <a class="home-link" href="/" aria-label="Vignesh Mayandia Chandran, home"><span class="brand-mark" aria-hidden="true">vm<span>.</span></span><span class="brand-name" aria-hidden="true">Vignesh MC</span></a>
+        <nav aria-label="Primary">
+          <ul class="primary-nav">
+            <li><a href="/" aria-current={aboutCurrent}>About</a></li>
+            <li><a href="/work/" aria-current={workCurrent}>Work</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <ThemeControl />
+      </div>
+    </header>
+    {story && <div class="reading-progress" aria-hidden="true"><span></span></div>}
+    <main id="main" tabindex="-1" class:list={['site-main', `route-${route}`]}>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div>
+          <p class="footer-identity">Vignesh Mayandia Chandran</p>
+          <p class="footer-line">Washington, DC</p>
+        </div>
+        <a class="back-to-top" href="#top">Back to top</a>
+      </div>
+    </footer>
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

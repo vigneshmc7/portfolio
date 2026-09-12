@@ -1,0 +1,73 @@
+---
+import Story from '../../../layouts/Story.astro';
+import ProjectMedia from '../../../components/ProjectMedia.astro';
+import scoreBands from '../../../assets/projects/mortgage-score-bands.webp';
+import Disclosure from '../../../components/Disclosure.astro';
+import CoverageFigure from '../../../components/CoverageFigure.astro';
+---
+<Story
+  route="hmda"
+  title="When should a mortgage model withhold a prediction? · Vignesh Mayandia Chandran"
+  description="An academic audit of historical mortgage approval and denial predictions, with held-out evaluation, subgroup screening and a proposed workflow for human review."
+  context="Public mortgage application data / Academic audit"
+  h1="When should a mortgage model withhold a prediction?"
+  standfirst="I evaluated a model of historical mortgage approval and denial outcomes, compared its behavior across groups and proposed reserving uncertain predictions for human review. The model predicts recorded decisions, not creditworthiness."
+  snapshot={[
+    { label: 'Context', value: 'Academic analysis of public 2024 Home Mortgage Disclosure Act records.' },
+    { label: 'Problem', value: 'Understand model performance, subgroup differences, and uncertain predictions before proposing a use.' },
+    { label: 'My contribution', value: 'Evaluation on reserved data, feature and subgroup checks, and review-band design.' },
+    { label: 'Result', value: 'An audit of about 1.71 million records reserved for evaluation and a proposed review workflow.' },
+  ]}
+  nav={[
+    { href: '#evaluation', label: 'Evaluation' },
+    { href: '#proposed-use', label: 'Proposed review workflow' },
+    { href: '#limits', label: 'Findings and limits' },
+  ]}
+>
+  <section id="evaluation" aria-labelledby="evaluation-title">
+    <h2 class="section-title" id="evaluation-title">What the model predicts</h2>
+    <div class="prose">
+      <p>Using public Home Mortgage Disclosure Act (HMDA) data, I audited a gradient-boosted classifier trained to predict a historical approval-versus-denial outcome. Reproducing that label does not establish whether the original decision was appropriate or whether a borrower would repay.</p>
+      <p>I evaluated the model on held-out data: application records reserved for testing rather than training. I checked its inputs, compared its behavior across groups and examined where uncertainty would make an approval-or-denial prediction misleading.</p>
+    </div>
+    <Disclosure id="artifacts" summary="Explaining the audit methods"><p>The model is a gradient-boosted classifier trained on a pruned set of 21 features. Protected attributes are excluded from training, while the audit still examines proxy risk. SHAP explanations describe how inputs contribute to model predictions; they do not establish causes. Population Stability Index comparisons examine differences between data distributions. Subgroup screening compares selected groups within the audit population; its findings depend on the data and grouping choices.</p></Disclosure>
+  </section>
+
+  <section id="proposed-use" aria-labelledby="proposed-use-title">
+    <h2 class="section-title" id="proposed-use-title">Reserving uncertain predictions for human review</h2>
+    <div class="prose">
+      <p>The chart below groups evaluation records by model score. The middle band, from 0.25 to below 0.75, contains 259,343 applications, about 15% of the total. Its average score and historical approval rate both sit near the middle. I proposed reserving this group for human review, without an approval-or-denial prediction.</p>
+      <p>Under the proposed workflow, predictions would be provided for about 85% of the 1.71 million evaluation records. Among that 85%, about 8% of predictions disagreed with the recorded historical decision. That disagreement rate applies only to records for which the workflow would provide a prediction.</p>
+    </div>
+    <ProjectMedia id="score-bands-chart" src={scoreBands} label="score-band chart" alt="Five model-score bands show application counts, historical approval rates, and mean scores. The middle band from 0.25 to below 0.75 contains 259,343 records, with approval rate and mean score near the middle." caption="Original audit figure: held-out application counts, historical approval rates, and mean model scores across five score bands. Held-out records were reserved for evaluation." />
+    <CoverageFigure
+      id="coverage-figure"
+      title="Coverage of the proposed review workflow"
+      total="About 1.71 million held-out records"
+      coveredLabel="Prediction provided"
+      coveredValue="About 85%"
+      uncertainLabel="Reserved for human review"
+      uncertainValue="About 15%"
+      coveredShare={85}
+      disagreement="About 8% disagreement with the historical decision among records receiving a prediction."
+      caption="Rounded results for the proposed review workflow, evaluated on held-out records. The disagreement rate applies only to the 85% receiving a prediction."
+    />
+    <aside class="boundary-block" aria-labelledby="boundary-title">
+      <h3 id="boundary-title">Recommended uses and limitations</h3>
+      <ul>
+        <li>Consider review support, audit prioritization, and model-risk monitoring within the evaluated scope.</li>
+        <li>Reserve uncertain cases for human review.</li>
+        <li>Do not use the analysis to justify autonomous credit decisions.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section id="limits" aria-labelledby="limits-title">
+    <h2 class="section-title" id="limits-title">What the audit established</h2>
+    <div class="prose">
+      <p>The subgroup screen found no groups below its 0.80 screening threshold and flagged six groups in the 0.80–0.90 caution zone for monitoring. Those findings depend on the chosen population and grouping; they do not establish that the model is fair.</p>
+      <p>The result is an academic audit and a proposed way to prioritize review. It has not been deployed for credit decisions.</p>
+    </div>
+  </section>
+  <p class="project-link"><a class="text-link" href="https://github.com/vigneshmc7/HMDA-ML-Model-Audit">Explore the HMDA audit on GitHub</a></p>
+</Story>

@@ -1,0 +1,61 @@
+---
+import Story from '../../../layouts/Story.astro';
+import SchemaFigure from '../../../components/SchemaFigure.astro';
+import ProjectMedia from '../../../components/ProjectMedia.astro';
+import benchmarks from '../../../assets/projects/basketball-role-benchmarks.webp';
+import Disclosure from '../../../components/Disclosure.astro';
+---
+<Story
+  route="nba"
+  title="Comparing NBA players by role and playing time · Vignesh Mayandia Chandran"
+  description="An independent NBA analytics project by Vignesh Mayandia Chandran: a database with one player per game and historical comparisons normalized for playing time and role."
+  context="NBA analytics / Data modeling"
+  h1="Comparing NBA players by role and playing time"
+  standfirst="I built a database of player game records and a method for comparing season performance. Expressing statistics per 36 minutes and using historical benchmarks for different player roles gives those comparisons a consistent basis."
+  snapshot={[
+    { label: 'Context', value: 'Independent basketball analytics project using historical box scores.' },
+    { label: 'Problem', value: 'Make player comparisons repeatable across a defined population and set of statistics.' },
+    { label: 'My contribution', value: 'Database design, comparisons normalized for playing time, inferred roles, and historical benchmarks.' },
+    { label: 'Result', value: 'About 1.67 million player-game records in the documented local build, with season-level comparison rules.' },
+  ]}
+  nav={[
+    { href: '#data-structure', label: 'Data structure' },
+    { href: '#comparison-choices', label: 'Comparison choices' },
+    { href: '#interpretation', label: 'Interpretation' },
+  ]}
+>
+  <section id="data-structure" aria-labelledby="data-structure-title">
+    <h2 class="section-title" id="data-structure-title">A consistent record for each player and game</h2>
+    <div class="prose">
+      <p>Comparing players requires a consistent connection between box-score performance, players, teams, games, and dates. I designed a star schema, with a central performance table linked to those descriptive tables, so repeated analyses could use the same structure.</p>
+      <p>Each performance row represents one player in one game. The benchmark analysis combines those rows into player-seasons: one player’s statistics across a season. The project uses DuckDB and PostgreSQL.</p>
+    </div>
+    <SchemaFigure
+      id="schema-figure"
+      title="Organizing the comparison"
+      center="Player performance"
+      centerDetail="One player, one game"
+      related={['Player', 'Team', 'Game', 'Date']}
+      caption="Conceptual data model. Detailed columns and joins are omitted for readability."
+    />
+  </section>
+
+  <section id="comparison-choices" aria-labelledby="comparison-choices-title">
+    <h2 class="section-title" id="comparison-choices-title">Why player roles change the comparison</h2>
+    <div class="prose">
+      <p>I expressed statistics per 36 minutes so players with different playing time could be compared on the same basis. That is a normalization of recorded performance, rather than a promise of what someone would produce if they played longer.</p>
+      <p>The model infers three basketball roles: creators, wings and bigs. These broadly represent playmaking, perimeter and interior roles. In the historical chart, four assists per 36 minutes is around the 95th percentile for bigs, while the median for creators is 5.2.</p>
+    </div>
+    <ProjectMedia id="role-benchmarks-chart" src={benchmarks} label="role-benchmark chart" alt="Historical role benchmarks for points, assists, three-pointers, steals, rebounds, and blocks per 36 minutes. Bigs have 4.0 assists at the 95th percentile; creators have 5.2 at the median." caption="Original project chart: the 50th, 75th, and 95th percentiles for historical player-seasons, grouped by role and normalized to 36 minutes." />
+    <Disclosure id="tiers" summary="What the tiers mean"><p>The benchmark population used player-seasons with at least 750 minutes and 30 games. Creator, Wing, and Big roles had historical reference tiers at the 50th, 75th, and 95th percentiles. Recency filtering selected the current-player pool separately; those players were graded against fixed historical tiers, not against one another. Multiple statistical indicators contribute to the assigned tier, so one standout statistic does not decide it.</p></Disclosure>
+  </section>
+
+  <section id="interpretation" aria-labelledby="interpretation-title">
+    <h2 class="section-title" id="interpretation-title">Recent seasons against a fixed historical reference</h2>
+    <div class="prose">
+      <p>Selecting recent players and defining the reference population are separate decisions. I compare recent qualified player-seasons against the fixed historical tiers, rather than ranking those players only against one another. The database and benchmark rules make the comparison repeatable.</p>
+      <p>The historical baseline is not adjusted for era. The project also has unresolved links between database records and inconsistent team names. These limit the comparisons, which describe recorded performance and do not forecast future player value.</p>
+    </div>
+  </section>
+  <p class="project-link"><a class="text-link" href="https://github.com/vigneshmc7/NBA-Analytics">Explore the NBA project on GitHub</a></p>
+</Story>

@@ -1,0 +1,26 @@
+{
+  "name": "vignesh-portfolio",
+  "version": "1.0.0",
+  "description": "Vignesh Mayandia Chandran's portfolio",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "preview:worker": "wrangler dev --local --ip 127.0.0.1 --port 8787",
+    "deploy": "wrangler deploy"
+  },
+  "keywords": [],
+  "author": "Vignesh Mayandia Chandran",
+  "license": "ISC",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "astro": "5.18.2"
+  },
+  "devDependencies": {
+    "wrangler": "4.131.1"
+  }
+}

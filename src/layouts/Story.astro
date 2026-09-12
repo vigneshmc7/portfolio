@@ -1,0 +1,52 @@
+---
+// Shared story page: opening (back link, context, H1, standfirst, ownership snapshot, boundary note),
+// on-page navigation rail, and the article column provided by the page (sections with ids matching `nav`).
+import Base from './Base.astro';
+import type { StoryRoute } from '../data/routes';
+interface SnapshotItem { label: string; value: string }
+interface NavItem { href: string; label: string }
+interface Props {
+  route: StoryRoute;
+  title: string;
+  description: string;
+  context: string;
+  h1: string;
+  standfirst: string;
+  snapshot: SnapshotItem[];
+  boundary?: string;
+  nav: NavItem[];
+}
+const { route, title, description, context, h1, standfirst, snapshot, boundary, nav } = Astro.props;
+---
+<Base route={route} title={title} description={description}>
+  <article class="container story">
+    <header class="story-head">
+      <a class="back-link" href="/work/">All work</a>
+      <p class="context">{context}</p>
+      <h1 class="story-title">{h1}</h1>
+      <p class="standfirst">{standfirst}</p>
+      <div class="snapshot-panel">
+      <dl class="snapshot">
+        {snapshot.map((item) => <div><dt class="label">{item.label}</dt><dd>{item.value}</dd></div>)}
+      </dl>
+        {boundary && <p class="boundary">{boundary}</p>}
+      </div>
+    </header>
+
+    <div class="story-body">
+      <nav class="page-nav" aria-label="On this page">
+        <ul>
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="article-column">
+        <slot />
+        <div class="closing-links">
+          <a class="back-to-work text-link" href="/work/">Back to all work</a>
+          <a class="primary-link" href="/#contact">Contact me</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>

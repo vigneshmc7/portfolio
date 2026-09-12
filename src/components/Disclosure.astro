@@ -1,0 +1,14 @@
+---
+// Native details/summary disclosure, initially closed. The same summary and body are rendered a second
+// time as a print-only plain block so the method content prints even with JavaScript disabled (F-01).
+interface Props { id: string; summary: string }
+const { id, summary } = Astro.props;
+---
+<details class="disclosure" id={id}>
+  <summary>{summary}</summary>
+  <div class="disclosure-body"><slot /></div>
+</details>
+<div class="disclosure-print">
+  <p class="disclosure-print-title">{summary}</p>
+  <div class="disclosure-body"><slot /></div>
+</div>

@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+const modes = [{ mode: 'light', icon: 'sun', label: 'Light theme' }, { mode: 'dark', icon: 'moon', label: 'Dark theme' }, { mode: 'system', icon: 'system', label: 'System theme' }] as const;
+---
+<div class="theme-control" role="group" aria-label="Color theme" hidden>
+  {modes.map(({ mode, icon, label }) => (
+    <button type="button" data-theme-choice={mode} aria-label={label} aria-pressed={mode === 'system' ? 'true' : 'false'} data-tooltip={label}>
+      <Icon name={icon} size={18} /><span class="visually-hidden">{label}</span>
+    </button>
+  ))}
+</div>

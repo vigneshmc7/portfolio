@@ -1,0 +1,46 @@
+---
+// Homepage miniature figures (VISUAL-001). Explanatory, not interactive; exact node labels are public copy.
+interface Props { kind: 'weather-ready' | 'hmda' | 'nba' | 'energy' | 'services' | 'baja'; context: string }
+const { kind, context } = Astro.props;
+const illustrative = kind === 'energy' || kind === 'services';
+const caption = kind === 'energy' ? 'Anonymized entry options' : illustrative ? 'Illustrative method' : 'Simplified reconstruction';
+---
+<figure class:list={['mini', `mini-${kind}`]} aria-label={`${context}: ${caption.toLowerCase()}`}>
+  <div class="mini-area">
+    {kind === 'weather-ready' && (
+      <>
+        <ul class="mini-row mini-arrows"><li class="mini-node">Signals</li><li class="mini-node">Estimate</li><li class="mini-node">Manager</li></ul>
+        <p class="mini-return"><span class="mini-return-line" aria-hidden="true"></span><span class="mini-return-label">Feedback</span></p>
+      </>
+    )}
+    {kind === 'hmda' && (
+      <ul class="mini-hmda-grid"><li class="mini-node">Model performance</li><li class="mini-node">Group comparisons</li><li class="mini-node mini-soft mini-span">Human review</li></ul>
+    )}
+    {kind === 'nba' && (
+      <ul class="mini-row mini-arrows"><li class="mini-node">Player game records</li><li class="mini-node">Season totals</li><li class="mini-node">Role tiers</li></ul>
+    )}
+    {kind === 'energy' && (
+      <dl class="mini-entry-options">
+        <div><dt>New infrastructure</dt><dd>Investment and setup</dd></div>
+        <div><dt>Existing infrastructure</dt><dd>Capacity and useful life</dd></div>
+      </dl>
+    )}
+    {kind === 'services' && (
+      <ul class="mini-ovals"><li class="mini-oval">Project services</li><li class="mini-oval">Skill assessment</li><li class="mini-oval">Client needs</li></ul>
+    )}
+    {kind === 'baja' && (
+      <>
+        <ol class="mini-row mini-arrows"><li class="mini-node marker-circle">Team</li><li class="mini-node marker-circle">Build</li><li class="mini-node marker-square">Brake test</li></ol>
+        <p class="mini-note">Disqualified at the brake test</p>
+      </>
+    )}
+  </div>
+  <figcaption class="mini-caption">{caption}</figcaption>
+</figure>
+
+<style>
+  .mini-entry-options { display: grid; gap: 14px; width: 100%; }
+  .mini-entry-options > div { border: 1px solid var(--control-border); padding: 12px 16px; }
+  .mini-entry-options dt { font-size: .85rem; line-height: 1.4; }
+  .mini-entry-options dd { margin-top: 4px; font-size: .7rem; color: var(--muted); line-height: 1.5; }
+</style>
