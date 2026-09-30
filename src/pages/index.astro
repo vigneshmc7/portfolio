@@ -5,7 +5,7 @@ import Icon from '../components/Icon.astro';
 import { chapters } from '../data/chapters';
 import { projects } from '../data/projects';
 import portrait from '../assets/vignesh.jpg';
-const selectedWork = ['energy', 'dow', 'weather-ready'].map(slug => projects.find(project => project.slug === slug)!);
+const selectedWork = ['dow', 'energy', 'weather-ready'].map(slug => projects.find(project => project.slug === slug)!);
 const capabilityNodes = [
   { label: 'Business strategy', details: ['Market entry', 'Growth strategy'], href: '/work/?focus=strategy' },
   { label: 'Industrial operations', details: ['Workflow automation', 'Program delivery'], href: '/work/dow/' },
@@ -19,7 +19,7 @@ const capabilityNodes = [
         <h1 id="hero-title">Hi, I'm <span>Vignesh.</span></h1>
         <p class="hero-credentials">MBA · MS in Business Analytics</p>
         <div class="hero-lede">
-          <p>I trained as a mechanical engineer and spent more than five years at Dow, progressing from technical analysis to leading large-scale, data-intensive programs in industrial operations. I led a system migration across 15 sites, aligning engineering, plant teams and leadership around clear priorities and carrying the program through to completion.</p>
+          <p>I trained as a mechanical engineer and spent more than five years in maintenance and reliability at Dow, where I led a program that moved 15 manufacturing sites onto a new maintenance system.</p>
           <p>I recently completed an MBA and an MS in Business Analytics at George Washington University. I brought my experience of leading implementation into the classroom, where my focus expanded to the business decisions behind it: which opportunities to pursue, what the analysis supports and where technology can help. My work in business strategy and applied AI builds on that combination of analytical judgment and practical experience.</p>
         </div>
         <div class="hero-actions">

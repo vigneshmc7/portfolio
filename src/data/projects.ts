@@ -61,14 +61,14 @@ const previews: Record<string, Pick<Project, 'category' | 'detail' | 'contributi
 
 export const projects: Project[] = [
   {
-    slug: 'dow', context: 'Dow', title: 'Migrating inspection records across 15 Dow sites',
-    summary: 'I proposed the rollout and designed the review process for migrating equipment-inspection records. The team completed the transition across 15 sites.',
+    slug: 'dow', context: 'Dow', title: 'Moving 15 Dow sites onto a new maintenance system',
+    summary: 'I led the migration of 15 sites and 30,000 assets to a new maintenance system (GE APM).',
     capability: 'Workflow improvement · Program delivery',
     status: 'Industrial operations · Completed migration', href: '/work/dow/', linkText: 'Read the Dow story',
     category: 'leadership', mini: 'dow',
-    detail: 'A three-site pilot established the workflow; site validation and working meetings helped move the reviews forward.',
-    contribution: 'I proposed the rollout structure, designed the site-review workflow and coordinated reporting between plant teams, specialists and leadership. In separate earlier work, I automated routine documentation and kept exceptions for review.',
-    result: 'The team completed the migration across 15 sites.',
+    detail: 'Leadership had planned five phases, each with its own setup and tracking. I proposed two: a three-site pilot to prove the process, then the other 12 sites together.',
+    contribution: 'I designed the review each site used to verify its data before switching over. I kept about 50 stakeholders on schedule without authority over their budgets.',
+    result: 'We finished in December 2023, a year ahead of plan. The program delivered $10M in cost avoidance.',
   },
   ...['energy', 'services', 'weather-ready', 'hmda', 'nba', 'baja'].map(slug => {
     const story = stories.find(story => story.slug === slug)!;

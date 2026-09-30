@@ -12,9 +12,9 @@ export const chapters = [
   },
   {
     id: 'dow', label: 'Dow', date: '2018–2024',
-    title: 'Industrial operations and inspection systems',
+    title: 'Maintenance and reliability programs',
     paragraphs: [
-      'I prepared and checked equipment inspection records, automated routine documentation and coordinated with plant teams and engineering specialists. Over time, I took on the design of review workflows and coordination of system changes across sites.',
+      'I was on the Remote Maintenance and Reliability team in Dow’s global engineering center, covering manufacturing sites in the US and Europe. Our work involved implementing predictive maintenance strategies, which use corrosion rates to estimate each plant asset’s remaining life and set how often it is inspected based on its risk of failure. I started by building the equipment data needed to calculate that risk, from plant drawings and operating records. After supporting about 10 site rollouts, I led two implementations end to end. In my final role, I was the program lead for moving this data to a new maintenance system across 15 sites and 30,000 assets. I reworked the rollout from five phases to two, and we finished a year ahead of schedule.',
     ],
     links: [{ href: '/work/dow/', label: 'Read the Dow story' }],
   },
