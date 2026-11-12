@@ -1,0 +1,116 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { resume } from '../../data/resume';
+// The download button appears only when the PDF is present in public/, so the page never links to a missing file.
+const hasPdf = fs.existsSync(path.join(process.cwd(), 'public', resume.pdf));
+const sections = [
+  { id: 'education', title: 'Education', entries: resume.education },
+  { id: 'experience', title: 'Experience', entries: resume.experience },
+];
+---
+<Base route="resume" title="Resume · Vignesh Mayandia Chandran" description="Resume of Vignesh Mayandia Chandran: education, experience at Dow, consulting engagements, projects and skills, with a one-page PDF.">
+  <div class="container"><article class="resume">
+    <header class="resume-head">
+      <div>
+        <h1 class="page-title">Resume</h1>
+        <p class="resume-name">Vignesh Mayandia Chandran</p>
+        <ul class="resume-contact" aria-label="Contact">
+          <li><a href="mailto:vigneshmc7p@gmail.com">vigneshmc7p@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/vignesh-mc/">linkedin.com/in/vignesh-mc</a></li>
+        </ul>
+      </div>
+      {hasPdf && <p class="resume-download"><a class="primary-link" href={resume.pdf} download>Download PDF <Icon name="download" size={18} /></a><span>One page</span></p>}
+    </header>
+
+    <div class="resume-sheet">
+      {sections.map(section => <section class="resume-section" aria-labelledby={`resume-${section.id}`}>
+        <h2 class="eyebrow" id={`resume-${section.id}`}>{section.title}</h2>
+        <div class="resume-entries">
+          {section.entries.map(entry => <div class="resume-entry">
+            <p class="resume-org">{entry.org}</p>
+            <p class="resume-date">{entry.date}</p>
+            <h3>{entry.role}</h3>
+            <ul>{entry.bullets.map(bullet => <li>{bullet}</li>)}</ul>
+          </div>)}
+        </div>
+      </section>)}
+
+      <section class="resume-section" aria-labelledby="resume-consulting">
+        <h2 class="eyebrow" id="resume-consulting">Consulting experience</h2>
+        <div class="resume-entries">
+          {resume.consulting.map(entry => <div class="resume-entry">
+            <h3>{entry.title}</h3>
+            <p class="resume-date">{entry.date}</p>
+            <p class="resume-text">{entry.text}</p>
+          </div>)}
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="resume-projects">
+        <h2 class="eyebrow" id="resume-projects">Projects</h2>
+        <div class="resume-entries">
+          {resume.projects.map(project => <div class="resume-entry">
+            <h3>{project.name}</h3>
+            <p class="resume-date"><a href={project.link.href} aria-label={`${project.name}: ${project.link.label}`}>{project.link.label}</a></p>
+            <p class="resume-text">{project.text}</p>
+          </div>)}
+        </div>
+      </section>
+
+      <section class="resume-section" aria-labelledby="resume-skills">
+        <h2 class="eyebrow" id="resume-skills">Skills &amp; interests</h2>
+        <dl class="resume-skills">
+          {resume.skills.map(item => <div><dt>{item.label}</dt><dd>{item.text}</dd></div>)}
+        </dl>
+      </section>
+    </div>
+  </article></div>
+</Base>
+
+<style>
+  .resume { max-width: 980px; }
+  .resume-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px 40px; }
+  .resume-name { margin-top: 18px; font: 400 1.35rem/1.3 var(--font-story); }
+  .resume-contact { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 4px; list-style: none; font-size: .86rem; }
+  .resume-contact a { display: inline-flex; align-items: center; min-height: 44px; text-underline-offset: 4px; }
+  .resume-download { display: flex; align-items: center; gap: 16px; padding-bottom: 4px; }
+  .resume-download span { color: var(--muted); font-size: .78rem; }
+  .resume-sheet { margin-top: 36px; padding: 12px 48px 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; }
+  .resume-section { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 32px; padding-block: 28px; }
+  .resume-section + .resume-section { border-top: 1px solid var(--line); }
+  .resume-section > h2 { padding-top: 5px; font-size: .68rem; text-wrap: initial; }
+  .resume-entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; align-items: baseline; }
+  .resume-entry + .resume-entry { margin-top: 26px; }
+  .resume-org { font-size: .82rem; font-weight: 600; }
+  .resume-date { color: var(--muted); font-size: .78rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .resume-entry h3 { grid-column: 1; font: 400 1.22rem/1.3 var(--font-story); letter-spacing: -.01em; }
+  .resume-org + .resume-date { grid-area: 1 / 2; }
+  .resume-entry ul, .resume-text { grid-column: 1 / -1; margin-top: 10px; font-size: .88rem; line-height: 1.65; }
+  .resume-entry ul { padding-left: 1.1em; }
+  .resume-entry li + li { margin-top: 6px; }
+  .resume-entry li::marker { color: var(--control-border); }
+  .resume-skills { display: grid; gap: 10px; font-size: .88rem; line-height: 1.65; }
+  .resume-skills dt { font-weight: 600; }
+  @media (min-width: 720px) { .resume-skills > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; } }
+  @media (max-width: 899.98px) {
+    .resume-sheet { padding: 4px 28px 28px; }
+    .resume-section { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-block: 24px; }
+  }
+  @media (max-width: 719.98px) {
+    .resume-head { align-items: start; }
+    .resume-sheet { margin-top: 28px; padding: 0 18px 20px; }
+    .resume-entry { grid-template-columns: minmax(0, 1fr); }
+    .resume-org + .resume-date, .resume-date { grid-area: auto; white-space: normal; }
+    .resume-entry h3 { font-size: 1.12rem; }
+  }
+  @media print {
+    .resume-download { display: none; }
+    .resume-sheet { margin-top: 16px; padding: 0; border: 0; }
+    .resume-section { display: block; padding-block: 12px; }
+    .resume-entry { break-inside: avoid; }
+    .resume-contact a { min-height: 0; }
+  }
+</style>

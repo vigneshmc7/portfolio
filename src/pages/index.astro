@@ -4,12 +4,13 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import { chapters } from '../data/chapters';
 import { projects } from '../data/projects';
+import { streakDays } from '../data/streak';
 import portrait from '../assets/vignesh.jpg';
 const selectedWork = ['dow', 'energy', 'weather-ready'].map(slug => projects.find(project => project.slug === slug)!);
 const capabilityNodes = [
   { label: 'Business strategy', details: ['Market entry', 'Growth strategy'], href: '/work/?focus=strategy' },
-  { label: 'Industrial operations', details: ['Workflow automation', 'Program delivery'], href: '/work/dow/' },
-  { label: 'Applied AI', details: ['Product discovery', 'AI prototyping'], href: '/work/weather-ready/' },
+  { label: 'Operations', details: ['Program management', 'Process improvement'], href: '/work/dow/' },
+  { label: 'Applied AI', details: ['Workflow automation', 'AI prototyping'], href: '/work/weather-ready/' },
 ];
 ---
 <Base route="home" title="Vignesh Mayandia Chandran · Business strategy, operations & applied AI" description="Vignesh Mayandia Chandran: MBA and MS in Business Analytics, with more than five years at Dow. Explore work in market-entry and growth strategy, inspection systems and AI planning for restaurants.">
@@ -21,10 +22,11 @@ const capabilityNodes = [
         <div class="hero-lede">
           <p>I trained as a mechanical engineer and spent more than five years in maintenance and reliability at Dow, where I led a program that moved 15 manufacturing sites onto a new maintenance system.</p>
           <p>I recently completed an MBA and an MS in Business Analytics at George Washington University. I brought my experience of leading implementation into the classroom, where my focus expanded to the business decisions behind it: which opportunities to pursue, what the analysis supports and where technology can help. My work in business strategy and applied AI builds on that combination of analytical judgment and practical experience.</p>
+          <p>I’m looking for strategy, operations and program management roles, in consulting or in industry.</p>
         </div>
         <div class="hero-actions">
           <a class="primary-link" href="/work/">View all {projects.length} projects <Icon name="arrow" /></a>
-          <a class="hero-story-link" href="#career">My background</a>
+          <a class="hero-story-link" href="/resume/">Resume</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -69,16 +71,18 @@ const capabilityNodes = [
   </section>
 
   <section class="container personal-section" id="interests" aria-labelledby="interests-title">
-    <div class="personal-copy"><h2 id="interests-title">Have you played Mini Sudoku on LinkedIn?</h2><p>I’m on a 370-day streak.</p><a class="puzzle-link" href="https://www.linkedin.com/games/mini-sudoku">Try today’s puzzle</a></div>
+    <h2 class="eyebrow" id="interests-title">Outside work</h2>
+    <p class="personal-line"><span>Have you played Mini Sudoku on LinkedIn? I’m on a <span data-streak>{streakDays()}</span>-day streak.</span>{' '}<a class="puzzle-link" href="https://www.linkedin.com/games/mini-sudoku">Try today’s puzzle</a></p>
   </section>
 
   <section class="contact-stage" id="contact" aria-labelledby="contact-title">
     <div class="container contact-composition">
-      <div><h2 id="contact-title">Contact</h2><p>I’m interested in roles in consulting, business transformation and applied AI.</p></div>
+      <div><h2 id="contact-title">Contact</h2><p>I’m looking for strategy, operations and program management roles, in consulting or in industry.</p></div>
       <ul class="contact-channels" aria-label="Contact and profiles">
         <li><a href="mailto:vigneshmc7p@gmail.com"><Icon name="gmail" size={24} /><span>vigneshmc7p@gmail.com</span></a></li>
         <li><a href="https://www.linkedin.com/in/vignesh-mc/"><Icon name="linkedin" size={24} /><span>LinkedIn</span></a></li>
         <li><a href="https://github.com/vigneshmc7"><Icon name="github" size={24} /><span>GitHub</span></a></li>
+        <li><a href="/resume/"><Icon name="document" size={24} /><span>Resume</span></a></li>
       </ul>
     </div>
   </section>
@@ -138,10 +142,10 @@ const capabilityNodes = [
   .experience-entry .prose { max-width: 76ch; font-size: .9rem; line-height: 1.75; }
   .chapter-links { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 8px; }
   .chapter-links .chapter-link { margin-top: 0; gap: 12px; }
-  .personal-section { display: block; padding-block: 48px; }
-  .personal-copy h2 { font-size: clamp(1.6rem, 2.4vw, 2.1rem); line-height: 1.3; margin: 0; text-wrap: pretty; }
-  .personal-copy > p { margin-top: 12px; }
-  .puzzle-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: .9rem; text-underline-offset: 4px; }
+  .personal-section { display: block; padding-block: 28px; }
+  .personal-section h2 { font-size: .68rem; }
+  .personal-line { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; margin-top: 6px; font-size: .92rem; line-height: 1.7; }
+  .puzzle-link { display: inline-flex; align-items: center; min-height: 44px; font-size: .9rem; text-underline-offset: 4px; }
   @media (min-width: 720px) and (max-width: 1099px) {
     .hero-composition { gap: 28px; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
     .hero-visual { --portrait-size: 184px; --branch-drop: 112px; }
@@ -174,7 +178,7 @@ const capabilityNodes = [
     .selected-footnote { padding-top: 16px; }
     .experience-entry { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 24px; }
     .journey-section { padding-block: 44px; }
-    .personal-section { padding-block: 36px; }
+    .personal-section { padding-block: 22px; }
     .selected-work h3 { font-size: 1.65rem; }
   }
   @media (max-width: 369px) {

@@ -196,6 +196,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
   .primary-nav a { font-size: .72rem; padding-inline: 3px; min-width: 44px; justify-content: center; }
   .theme-control { padding: 1px; }
   .theme-control button { width: 44px; height: 44px; }
+  .theme-control button:not([aria-pressed='true']) { display: none; }
   .site-main { padding-top: 35px; padding-bottom: 70px; }
   .site-main.route-home { padding-top: 12px; }
   .portrait-hero { margin-inline: 12px; display: flex; flex-direction: column; min-height: 0; }

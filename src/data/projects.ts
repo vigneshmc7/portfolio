@@ -63,7 +63,7 @@ export const projects: Project[] = [
   {
     slug: 'dow', context: 'Dow', title: 'Moving 15 Dow sites onto a new maintenance system',
     summary: 'I led the migration of 15 sites and 30,000 assets to a new maintenance system (GE APM).',
-    capability: 'Workflow improvement · Program delivery',
+    capability: 'Program management · Process improvement',
     status: 'Industrial operations · Completed migration', href: '/work/dow/', linkText: 'Read the Dow story',
     category: 'leadership', mini: 'dow',
     detail: 'Leadership had planned five phases, each with its own setup and tracking. I proposed two: a three-site pilot to prove the process, then the other 12 sites together.',
@@ -78,7 +78,7 @@ export const projects: Project[] = [
 
 export const categories = [
   { value: 'all', label: 'All work', count: 7 },
-  { value: 'leadership', label: 'Program leadership', count: 2 },
+  { value: 'leadership', label: 'Programs and operations', count: 2 },
   { value: 'strategy', label: 'Strategy', count: 2 },
-  { value: 'analytics', label: 'Analytics & product', count: 3 },
+  { value: 'analytics', label: 'AI and analytics', count: 3 },
 ];

@@ -1,5 +1,5 @@
 ---
-interface Props { name: 'arrow' | 'down' | 'close' | 'sun' | 'moon' | 'system' | 'plus' | 'gmail' | 'linkedin' | 'github'; size?: number }
+interface Props { name: 'arrow' | 'down' | 'close' | 'sun' | 'moon' | 'system' | 'plus' | 'document' | 'download' | 'gmail' | 'linkedin' | 'github'; size?: number }
 const { name, size = 20 } = Astro.props;
 const brands = { gmail: '/brands/gmail.svg', linkedin: '/brands/linkedin.png', github: '/brands/github.svg' };
 const brand = name in brands ? brands[name as keyof typeof brands] : null;
@@ -11,6 +11,8 @@ const paths = {
   moon: ['M20.5 13a8.5 8.5 0 1 1-9.5-9.5A7 7 0 0 0 20.5 13Z'],
   system: ['M4 4h16v12H4z', 'M12 16v4m-4 0h8'],
   plus: ['M12 5v14', 'M5 12h14'],
+  document: ['M7 3h7l4 4v14H7z', 'M14 3v4h4', 'M10 12h5m-5 4h5'],
+  download: ['M12 4v11', 'm7 11 5 5 5-5', 'M5 20h14'],
 };
 ---
 {brand ? <img class="brand-icon" src={brand} width={size} height={size} alt="" aria-hidden="true" loading="lazy" /> : <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">

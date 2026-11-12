@@ -3,7 +3,7 @@
 export const person = {
   name: 'Vignesh Mayandia Chandran',
   description:
-    'Business strategy, industrial operations and applied AI, with more than five years at Dow. MBA and MS in Business Analytics from George Washington University, completed in May 2026. Work includes equipment-inspection workflows and records automation, a team records migration across 15 sites, market-entry and growth recommendations, and an AI prototype that estimates dinner demand for restaurant managers. Former president of the Graduate Consulting Club. Based in Washington, DC.',
+    'Business strategy, industrial operations and applied AI, with more than five years at Dow. MBA and MS in Business Analytics from George Washington University, completed in May 2026. Work includes equipment-inspection workflows and records automation, a team records migration across 15 sites, market-entry and growth recommendations, and an AI prototype that estimates dinner demand for restaurant managers. Former president of the Graduate Consulting Club.',
   sameAs: ['https://www.linkedin.com/in/vignesh-mc/', 'https://github.com/vigneshmc7'],
   alumniOf: ['George Washington University'],
 };

@@ -21,6 +21,7 @@ const jsonLd = pageSchema ? JSON.stringify(pageSchema).replace(/</g, '\\u003c') 
 // the index and the current section on every story route.
 const aboutCurrent = route === 'home' ? 'page' : undefined;
 const workCurrent = route === 'work' ? 'page' : story ? 'true' : undefined;
+const resumeCurrent = route === 'resume' ? 'page' : undefined;
 ---
 <!doctype html>
 <html lang="en">
@@ -67,6 +68,7 @@ const workCurrent = route === 'work' ? 'page' : story ? 'true' : undefined;
           <ul class="primary-nav">
             <li><a href="/" aria-current={aboutCurrent}>About</a></li>
             <li><a href="/work/" aria-current={workCurrent}>Work</a></li>
+            <li><a href="/resume/" aria-current={resumeCurrent}>Resume</a></li>
             <li><a href="/#contact">Contact</a></li>
           </ul>
         </nav>
@@ -79,10 +81,7 @@ const workCurrent = route === 'work' ? 'page' : story ? 'true' : undefined;
     </main>
     <footer class="site-footer">
       <div class="container footer-row">
-        <div>
-          <p class="footer-identity">Vignesh Mayandia Chandran</p>
-          <p class="footer-line">Washington, DC</p>
-        </div>
+        <p class="footer-identity">Vignesh Mayandia Chandran</p>
         <a class="back-to-top" href="#top">Back to top</a>
       </div>
     </footer>

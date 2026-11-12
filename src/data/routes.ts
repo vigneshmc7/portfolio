@@ -2,5 +2,5 @@
 // Open Graph type, and the current-page state of the primary navigation.
 export const storyRoutes = ['dow', 'weather-ready', 'hmda', 'nba', 'energy-market-entry', 'services-growth', 'baja'] as const;
 export type StoryRoute = (typeof storyRoutes)[number];
-export type Route = 'home' | 'work' | StoryRoute;
+export type Route = 'home' | 'work' | 'resume' | StoryRoute;
 export const isStoryRoute = (route: Route): route is StoryRoute => (storyRoutes as readonly string[]).includes(route);

@@ -1,3 +1,5 @@
+import { streakDays } from '../data/streak';
+
 const root = document.documentElement;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 reducedMotion.addEventListener('change', () => {
@@ -24,10 +26,14 @@ function initTheme() {
       meta.content = mode === 'system' ? colors[meta.media.includes('dark') ? 'dark' : 'light'] : colors[mode];
     });
   }
+  const order: Mode[] = ['light', 'dark', 'system'];
   controls.forEach(button => button.addEventListener('click', () => {
-    mode = button.dataset.themeChoice as Mode;
+    // Phone layouts show only the active mode's button; tapping it steps to the next mode.
+    const compact = controls.some(other => other !== button && getComputedStyle(other).display === 'none');
+    mode = compact ? order[(order.indexOf(mode) + 1) % order.length] : button.dataset.themeChoice as Mode;
     try { if (mode === 'system') localStorage.removeItem(key); else localStorage.setItem(key, mode); } catch { /* Keep the in-memory mode. */ }
     apply();
+    if (compact) controls.find(other => other.dataset.themeChoice === mode)?.focus();
   }));
   system.addEventListener('change', () => { if (mode === 'system') apply(); });
   window.addEventListener('storage', event => {
@@ -177,6 +183,9 @@ function initDisclosures() {
   });
   window.addEventListener('afterprint', () => { opened.forEach(details => { details.open = false; }); opened = []; });
 }
+
+// The page is built with the count as of its last deploy; this brings it up to today.
+document.querySelectorAll('[data-streak]').forEach(element => { element.textContent = String(streakDays()); });
 
 initTheme();
 initWork();
