@@ -53,9 +53,9 @@ const previews: Record<string, Pick<Project, 'category' | 'detail' | 'contributi
   },
   baja: {
     category: 'leadership',
-    detail: 'Five groups worked on different parts of the vehicle, with weekly meetings to coordinate progress.',
-    contribution: 'As captain, I organized the 25-member student team and coordinated weekly meetings and fundraising alongside design and fabrication.',
-    result: 'The team built an off-road vehicle for its first BAJA competition. A failed brake test ended participation.',
+    detail: 'We combined five groups’ designs in a complete 3D vehicle model, then fabricated parts to that specification.',
+    contribution: 'I learned each system quickly enough to lead the engineering and bring the five groups’ work together through fabrication.',
+    result: 'We passed the design round and built the vehicle. A failed brake test led to disqualification at competition.',
   },
 };
 

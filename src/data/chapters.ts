@@ -20,9 +20,9 @@ export const chapters = [
   },
   {
     id: 'engineering', label: 'Undergraduate study', date: '2014–2018',
-    title: 'Mechanical engineering and student leadership',
+    title: 'Mechanical engineering and our first vehicle',
     paragraphs: [
-      'I captained a 25-member team entering BAJA, a student off-road vehicle competition. I coordinated five teams responsible for different vehicle systems, alongside fundraising and fabrication. We built our first vehicle, but a failed brake test ended our participation.',
+      'I captained 25 students building our first vehicle for BAJA, a student off-road competition. Chosen for leadership, I had to learn each system quickly enough to lead the design and fabrication across five engineering groups. We built the vehicle and took it to competition, where a failed brake test ended our entry.',
     ],
     links: [{ href: '/work/baja/', label: 'Read the student vehicle story' }],
   },
