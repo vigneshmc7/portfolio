@@ -5,9 +5,9 @@ import ProjectArt from '../../components/ProjectArt.astro';
 import ProjectPreview from '../../components/ProjectPreview.astro';
 import { projects, categories } from '../../data/projects';
 ---
-<Base route="work" title="All work · Vignesh Mayandia Chandran" description="Seven projects by Vignesh Mayandia Chandran: market-entry and growth strategy, inspection systems at Dow, applied AI, analytics and student leadership.">
+<Base route="work" title="All work · Vignesh Mayandia Chandran" description="Seven projects by Vignesh Mayandia Chandran: market-entry and growth strategy, a 15-site program at Dow, applied AI, analytics and student leadership.">
   <section class="container work-collection" id="stories" aria-labelledby="work-title" data-work-browser>
-    <header class="work-heading"><h1 id="work-title">All work</h1><p>Seven projects in business strategy, industrial operations, applied AI, analytics and student leadership.</p></header>
+    <header class="work-heading"><h1 id="work-title">All work</h1><p>Seven projects in business strategy, operations, applied AI, analytics and student leadership.</p></header>
     <div class="collection-toolbar"><div class="work-filters" role="group" aria-label="Filter projects by focus" data-work-filters hidden>{categories.map(category => <button type="button" data-filter={category.value} aria-pressed={category.value === 'all' ? 'true' : 'false'}>{category.label}<span aria-hidden="true">{String(category.count).padStart(2, '0')}</span></button>)}</div><p class="result-count" role="status" aria-live="polite" data-result-count>7 projects</p></div>
     <ul class="project-grid">
       {projects.map(project => <li class:list={['project-card', project.slug === 'dow' && 'project-featured']} data-project={project.slug} data-category={project.category}>

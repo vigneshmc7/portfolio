@@ -13,7 +13,7 @@ const origin = Astro.site ? Astro.site.href.replace(/\/$/, '') : null;
 const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
 const canonical = origin ? origin + pathname : null;
 const shareImage = origin ? origin + '/share-card.png' : null;
-const shareImageAlt = 'Vignesh Mayandia Chandran. Business strategy, industrial operations, digital transformation and applied AI. Dow, MBA, MSBA.';
+const shareImageAlt = 'Vignesh Mayandia Chandran. Business strategy, operations and applied AI. Dow, MBA, MSBA.';
 // Structured data mirrors the visible profile and case studies; escape "<" before embedding JSON.
 const pageSchema = route === 'home' ? profilePage(canonical) : story ? articlePage(canonical, title, description) : null;
 const jsonLd = pageSchema ? JSON.stringify(pageSchema).replace(/</g, '\\u003c') : null;
