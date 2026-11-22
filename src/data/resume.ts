@@ -1,6 +1,6 @@
 // Text of the Resume page, copied verbatim from the one-page PDF served at `pdf` below. The PDF is the
 // document of record: when it changes, replace the file in public/ and update this text to match it.
-// The page shows the email and LinkedIn contact lines only.
+// The page shows the contact links from the PDF header.
 export const resume = {
   pdf: '/Vignesh_MayandiaChandran_Resume.pdf',
   education: [
@@ -30,10 +30,10 @@ export const resume = {
       date: 'Oct 2021 – Apr 2024',
       role: 'Senior Mechanical Engineer | Technical Program Lead',
       bullets: [
-        'Led a compliance-driven program moving inspection records, risk ratings and schedules for 30K assets at 15 global sites onto GE-APM, building the review templates each site used and delivering $10M in cost avoidance',
-        'Partnered with vendor and IT teams on a template that generates inspection drawings straight from 3D plant models, halving drawing effort across plants and saving $100K in year 1',
-        'Restructured leadership’s 5-phase rollout into 2 phases, a 3-site pilot and then the other 12 sites at once, cutting 300 duplicate tracking workbooks and finishing 1 year early',
-        'Aligned 50 stakeholders across 3 decision levels without formal authority, using weekly meetings, 60 stage-gate reviews, and risk reports tailored to each audience to keep all 15 independently run sites on schedule',
+        'Led a compliance-driven program moving inspection records, risk ratings and schedules for 30K assets at 15 global sites into one system, building the review templates each site used and delivering $3M in cost avoidance',
+        'Partnered with vendor and IT teams to build a template that generates inspection drawings straight from 3D plant models, so plants halved drawing effort and saved $100K in year 1',
+        'Restructured leadership\'s 5-phase rollout into 2 phases, a 3-site pilot and then the other 12 sites at once, so the program cut 300 duplicate tracking workbooks and finished 1 year early',
+        'Aligned 50 stakeholders across 3 decision levels without formal authority, using weekly meetings, 60 milestone reviews, and risk reports tailored to each audience to keep all 15 independently run sites on schedule',
         'Standardized 160K equipment files across 14 plants into one folder structure and naming convention, coordinating 6 engineers to classify about 100 file types and applying every change in one scripted pass',
         'Grew the internal project pipeline 40% by publishing quarterly newsletters and targeted newsflashes that explained technical results in business terms to site leaders weighing new projects',
       ],
@@ -43,11 +43,11 @@ export const resume = {
       date: 'Dec 2018 – Sep 2021',
       role: 'Mechanical Engineer | Risk Analyst',
       bullets: [
-        'Analyzed equipment risk across 6 manufacturing sites using inspection histories and process data, steering maintenance toward the highest-risk assets and avoiding $3M in downtime losses',
-        'Redesigned the data workflow for review sessions with site experts, condensing each asset’s 50 fields into 3 linked MS Access screens so busy experts could finish every session on schedule',
+        'Analyzed equipment risk across 6 manufacturing sites using inspection histories and process data, steering maintenance toward the highest-risk assets and avoiding $1M in downtime losses',
+        'Redesigned the data workflow for review sessions with site experts, condensing each asset\'s 50 fields into 3 linked MS Access screens so busy experts could finish every session on schedule',
         'Resolved a backlog of 10K evidence files from a boiler-failure investigation in 1 week against a 2-month estimate by scripting the 80% of files that followed a pattern and checking the rest by hand',
-        'Persuaded a resistant cross-functional team to revalidate SAP process data that contradicted field conditions after winning the project manager’s backing with documented mismatches',
-        'Trained 10 engineers in every stage of the team’s work, from collecting technical data to leading meetings with site teams, through hands-on coaching and playbooks so new hires worked independently within a quarter',
+        'Persuaded a resistant cross-functional team to revalidate SAP process data that contradicted field conditions after winning the project manager\'s backing with documented mismatches',
+        'Trained 10 engineers in every stage of the team\'s work, from collecting technical data to leading meetings with site teams, through hands-on coaching and playbooks so new hires worked independently within a quarter',
       ],
     },
   ],
@@ -72,18 +72,18 @@ export const resume = {
     {
       name: 'Weather-Ready AI',
       link: { label: 'GitHub', href: 'https://github.com/vigneshmc7/Weather-Ready-AI' },
-      text: 'Built a full-stack AI agent prototype, based on interviews with 5 restaurant owners, that forecasts demand from weather and local signals, explains each forecast in plain language, and is projected to save $20K per operator a year',
+      text: 'Interviewed 5 restaurant owners on demand-planning challenges and built a forecasting prototype using weather and local data to predict customer demand, explain key drivers and support operational decisions, with projected annual savings of $20K per operator',
     },
     {
-      name: 'HMDA ML Model Audit',
+      name: 'Mortgage Lending Model Audit',
       link: { label: 'GitHub', href: 'https://github.com/vigneshmc7/HMDA-ML-Model-Audit' },
-      text: 'Audited a mortgage lending model on 1.7M records for fairness and drift using SHAP and PSI, then designed advisory score bands that cover 84.9% of applicants and route uncertain cases to human review',
+      text: 'Trained a mortgage approval model and tested it on 1.7M held-out applications for accuracy, fairness and population drift, then designed advisory guidelines that cover 85% of cases and route the rest to human review',
     },
   ],
   skills: [
     { label: 'Technical Skills', text: 'SQL, Python, MS Excel (advanced), Power BI, Tableau, MS Access, Git/GitHub, Jira, Confluence, SAP, GE-APM' },
     { label: 'AI Proficiency', text: 'Claude Code, Codex CLI, Gemini, Workflow Automation, Multi-Agent Orchestration, Rapid Prototyping' },
-    { label: 'Competencies', text: 'Program Management, Stakeholder Management, Process Improvement, Data Analysis, Financial Modeling, Forecasting' },
+    { label: 'Competencies', text: 'Program Management, Project Management, Stakeholder Management, Cross-Functional Collaboration, Executive Communication, Data Analysis, KPI Reporting, Process Improvement, Risk Management, Change Management, Financial Modeling' },
     { label: 'Interests', text: 'Avid fantasy book reader: The Wheel of Time by Robert Jordan; Math puzzles; Badminton' },
   ],
 };

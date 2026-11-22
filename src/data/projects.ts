@@ -68,7 +68,7 @@ export const projects: Project[] = [
     category: 'leadership', mini: 'dow',
     detail: 'Leadership had planned five phases, each with its own setup and tracking. I proposed two: a three-site pilot to prove the process, then the other 12 sites together.',
     contribution: 'I designed the review each site used to verify its data before switching over. I kept about 50 stakeholders on schedule without authority over their budgets.',
-    result: 'We finished in December 2023, a year ahead of plan. The program delivered $10M in cost avoidance.',
+    result: 'We finished in December 2023, a year ahead of plan. The program delivered $3M in cost avoidance.',
   },
   ...['energy', 'services', 'weather-ready', 'hmda', 'nba', 'baja'].map(slug => {
     const story = stories.find(story => story.slug === slug)!;
