@@ -28,7 +28,7 @@ export const resume = {
     {
       org: 'The Dow Chemical Company',
       date: 'Oct 2021 – Apr 2024',
-      role: 'Senior Mechanical Engineer | Technical Program Lead',
+      role: 'Technical Program Manager | Senior Mechanical Engineer',
       bullets: [
         'Led a compliance-driven program moving inspection records, risk ratings and schedules for 30K assets at 15 global sites into one system, building the review templates each site used and delivering $3M in cost avoidance',
         'Partnered with vendor and IT teams to build a template that generates inspection drawings straight from 3D plant models, so plants halved drawing effort and saved $100K in year 1',
